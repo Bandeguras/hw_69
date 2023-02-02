@@ -1,3 +1,11 @@
-from django.shortcuts import render
+from django.http import HttpResponse
+from datetime import datetime
 
-# Create your views here.
+
+def echo_view(request, *args, **kwargs):
+    response_data = {
+        'time': datetime.now().strftime('%Y-%m-%d %H:%M:%S'),
+        'method': request.method
+    }
+    response = HttpResponse(response_data)
+    return response
